@@ -1,0 +1,17 @@
+smal/*
+coma/*
+src/build/*
+src/chamfer_3D.egg-info/*
+src/dist/*
+__pycache__
+ComaTransfer/mesh/*
+ComaTransfer/raw_data/*
+ComaTransfer/attack_data/*
+ComaTransfer/checkpoints_saga/*
+ComaTransfer/visuals_train/*
+ComaTransfer/visuals_attack/*
+*.pickle
+*.npy
+*.png
+*.pdf
+
