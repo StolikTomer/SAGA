@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A spectral adversarial geometric attack on a 3D mesh autoencoder">
+  <meta name="keywords" content="Mesh, Geometric Adversarial Attack, Autoencoder">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAGA: Spectral Adversarial Geometric Attack on 3D Meshes</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SAGA: Spectral Adversarial Geometric Attack on 3D Meshes</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?pli=1&authuser=2&user=DGrmAqkAAAAJ">Tomer Stolik</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=q0bBhtsAAAAJ&hl=en">Itai Lang</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="http://www.eng.tau.ac.il/~avidan/">Shai Avidan</a>
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">Tel Aviv University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2211.13775.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2211.13775"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/StolikTomer/SAGA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+                </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure>
+        <img src="./static/videos/rotate.gif" height="100%">
+        <figcaption><b>SAGA results.</b> Two of SAGA's adversarial shapes (a cow and a human face) and their reconstructions by an autoencoder (AE).
+          The reconstructions are of shapes from different semantic classes (a hippo and a face of a different person).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+       <figure>
+         <img src="./static/images/teaser.png" height="100%">
+         <figcaption><b>A geometric mesh attack.</b> An example result of our attack. A clean input mesh (top left)
+           is perturbed into an adversarial example (top right) with a geometric shape of a cow. While the clean mesh is
+           accurately reconstructed by an AE as a cow (bottom left), SAGA fools the AE and changes the output
+           geometry to the shape of a hippo (bottom right).</figcaption>
+       </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            A triangular mesh is one of the most popular 3D data representations. As such, the deployment of deep neural
+            networks for mesh processing is widely spread and is increasingly attracting more attention. However, neural
+            networks are prone to adversarial attacks, where carefully crafted inputs impair the model's functionality.
+            The need to explore these vulnerabilities is a fundamental factor in the future development of 3D-based
+            applications. Recently, mesh attacks were studied on the semantic level, where classifiers are misled to
+            produce wrong predictions. Nevertheless, mesh surfaces possess complex geometric attributes beyond their
+            semantic meaning, and their analysis often includes the need to encode and reconstruct the geometry of the shape.
+          </p>
+          <p>
+            We propose a novel framework for a geometric adversarial attack on a 3D mesh autoencoder. In this setting, an
+            adversarial input mesh deceives the autoencoder by forcing it to reconstruct a different geometric shape at its output.
+            The malicious input is produced by perturbing a clean shape in the spectral domain. Our method leverages the spectral
+            decomposition of the mesh along with additional mesh-related properties to obtain visually credible results that
+            consider the delicacy of surface distortions. Our code is publicly available.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <h2 style="text-align: center;" class="title is-3">Method</h2>
+    <div class="hero-body">
+      <figure>
+        <img src="./static/images/diagram.png" width="100%">
+        <br>
+        <br>
+        <figcaption><b>The proposed attack framework.</b> Attack parameters perturb the spectral coefficients
+          of the source shape to craft an adversarial example. The malicious input (Adversary) misleads the
+          AE to reconstruct the geometry of the target mesh. The perturbation is optimized using a
+          loss function that compares the AE's output with the target shape, and regularizes the
+          adversarial shape to preserve the source's geometric properties.</figcaption>
+      </figure>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Evolution. -->
+    <h2 style="text-align: center;" class="title is-3">Evolution</h2>
+    <div class="hero-body">
+      <figure>
+        <img src="./static/videos/evolution.gif" width="100%">
+        <figcaption><b>Attack evolution.</b> On the left, we present the perturbations of two source shapes during the progress of the optimization process.
+          On the right, we show the AE's reconstructions of the perturbed shapes. SAGA misleads the AE to reconstruct the target mesh while
+          regularizing the deformation of the source shape.</figcaption>
+      </figure>
+    </div>
+    <!--/ Evolution. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Transferability. -->
+    <h2 style="text-align: center;" class="title is-3">Transferability</h2>
+    <div class="hero-body">
+      <figure>
+        <img src="./static/images/transferability.png" width="100%">
+        <figcaption><b>Attack transferability.</b> A source shape (top left) is perturbed by SAGA into an adversarial
+          example (top middle). The adversarial shape passes through three different AEs. The first (top right) is the
+          victim AE used in the attack, with a multilayer perceptron (MLP) architecture (denoted as Victim MLP). The
+          second AE (bottom left) has the same MLP architecture but was trained with a different random weight
+          initialization (denoted as Other MLP). The third (bottom right) is a <a href="https://arxiv.org/abs/1807.10267">convolutional AE</a>
+          (denoted as CoMA). The three AEs change their input geometric shape.</figcaption>
+      <br>
+      </figure>
+            <figure>
+        <img src="./static/images/transferability_supp.png" width="100%">
+        <figcaption><b>Attack transferability.</b> Another example of SAGA's transferability to other AEs.</figcaption>
+      </figure>
+    </div>
+    <!--/ Transferability. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Visual Results. -->
+    <h2 style="text-align: center;" class="title is-3">Visual Results</h2>
+    <div class="hero-body">
+      <p>We exhibit SAGA's results and compare them to Lang <i>et al.</i>'s <a href="https://github.com/itailang/geometric_adv">point cloud (PC) geometric attack</a>.</p>
+      <br>
+      <figure>
+        <img src="./static/images/smal_concat_all.png" width="100%">
+        <figcaption><b>Geometric attacks comparison.</b> SAGA's results on the <a href="https://smal.is.tue.mpg.de/">SMAL dataset</a>.
+          Each frame presents a different source-target pair. In each frame, top row, left to right: the clean
+          source mesh, the PC attack's adversarial example, SAGA's adversarial example, and the clean target
+          shape. Bottom row: the reconstructions of the shapes from the top row after passing through the AE.
+          The heatmap encodes the per-vertex curvature distortion values between each adversarial example and
+          the clean source shape, growing from white to red. Lang <i>et al.</i>'s attack severely distorts the source shape.
+          In contrast, our SAGA better preserves the source and achieves the desired target reconstruction.</figcaption>
+      </figure>
+      <br>
+      <figure>
+        <img src="./static/images/coma_concat_all.png" width="100%">
+        <figcaption><b>Geometric attacks comparison.</b> SAGA's results on the <a href="https://coma.is.tue.mpg.de/">CoMA dataset</a>, as described in the previous figure.</figcaption>
+      </figure>
+    </div>
+    <!--/ Visual Results. -->
+  </div>
+</section>
+
+<section class="section" id="Citation">
+  <div class="container is-max-desktop content">
+    <h2 style="text-align: center;" class="title">Citation</h2>
+    <pre><code>@article{stolik2022saga,
+  author    = {Stolik, Tomer and Lang, Itai and Avidan, Shai},
+  title     = {{SAGA: Spectral Adversarial Geometric Attack on 3D Meshes}},
+  journal   = {arXiv preprint arXiv:2211.13775},
+  year      = {2022},
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 style="text-align: center;" class="title is-3">Acknowledgement</h2>
+        <div class="content has-text-justified">
+          <p>
+            This page was inspired by <a href="https://nerfies.github.io/">Nerfies: Deformable Neural Radiance Fields</a>. We thank the authors for sharing their source code.
+          </p>
+        </div>
+  </div>
+</section>
+
+</body>
+</html>
