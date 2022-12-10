@@ -14,4 +14,4 @@ ComaTransfer/visuals_attack/*
 *.npy
 *.png
 *.pdf
-
+.idea
