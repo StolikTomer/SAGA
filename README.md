@@ -1,5 +1,5 @@
 # SAGA: Spectral Adversarial Geometric Attack on 3D Meshes
-Created by [Tomer Stolik](https://scholar.google.com/citations?pli=1&authuser=2&user=DGrmAqkAAAAJ), [Itai Lang](https://scholar.google.com/citations?user=q0bBhtsAAAAJ&hl=en), and [Shai Avidan](http://www.eng.tau.ac.il/~avidan/) from Tel Aviv University.
+Created by [Tomer Stolik](https://scholar.google.com/citations?pli=1&authuser=2&user=DGrmAqkAAAAJ), [Itai Lang](https://itailang.github.io/), and [Shai Avidan](http://www.eng.tau.ac.il/~avidan/) from Tel Aviv University.
 
 [[Paper]](https://arxiv.org/abs/2211.13775) [[Project Page]](https://stoliktomer.github.io/SAGA/)
 
